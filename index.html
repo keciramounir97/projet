@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CristalGlace | Lave-Glace Premium Automobile</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="url(#premiumGlow)" stroke-width="2.5"/>
+                    <path d="M30 45 L50 25 L70 45" fill="none" stroke="#00d2ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M25 65 C 40 55, 60 75, 75 65" fill="none" stroke="#0072ff" stroke-width="3.5" stroke-linecap="round"/>
+                    <circle cx="50" cy="45" r="3" fill="#ffffff"/>
+                    <defs>
+                        <linearGradient id="premiumGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#00d2ff" />
+                            <stop offset="100%" stop-color="#0072ff" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span class="logo-text">CRISTAL<span class="highlight">GLACE</span></span>
+            </div>
+            <nav class="nav-links">
+                <a href="#features">Avantages</a>
+                <a href="#product">Le Produit</a>
+                <a href="#testimonials">Avis</a>
+            </nav>
+            <a href="#cta-section" class="btn btn-secondary">Commander</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-container">
+            <div class="hero-text">
+                <span class="badge">Édition Ultra Performance 2026</span>
+                <h1>Une visibilité absolue, <br><span class="gradient-text">un éclat incomparable.</span></h1>
+                <p>Découvrez CristalGlace Haute Performance. Sa formule technologique exclusive élimine instantanément les films routiers, les insectes et le givre, protégeant vos essuie-glaces tout en laissant un parfum délicat haut de gamme.</p>
+                <div class="hero-actions">
+                    <a href="#cta-section" class="btn btn-primary">Acheter Maintenant</a>
+                    <a href="#features" class="btn btn-outline">En savoir plus</a>
+                </div>
+            </div>
+            <div class="hero-image-container">
+                <div class="product-glow"></div>
+                <div class="fluid-mockup">
+                    <div class="cap"></div>
+                    <div class="handle-hole"></div>
+                    <div class="liquid-level"></div>
+                    <div class="label-mock">
+                        <div class="label-brand">CRISTAL GLACE</div>
+                        <div class="label-sub">LAVE-GLACE PREMIUM</div>
+                        <div class="label-car"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Conçu pour l'Excellence</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">✨</div>
+                    <h3>Zéro Traces</h3>
+                    <p>Technologie hydrophobe avancée assurant un pare-brise parfaitement transparent sous toutes les météos.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">⚡</div>
+                    <h3>Action Instantanée</h3>
+                    <p>Dissout instantanément les corps gras, insectes et résidus routiers tenaces en un seul passage d'essuie-glace.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">❄️</div>
+                    <h3>Anti-Givre Évolué</h3>
+                    <p>Protection active efficace contre le gel sévère, prévenant la formation de givre instantané en cours de conduite.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cta-section" class="cta">
+        <div class="container cta-container">
+            <h2>Passez à la clarté absolue dès aujourd'hui</h2>
+            <p>Profitez de notre offre exclusive de lancement : <strong>Livraison offerte</strong> pour tout achat de pack premium de 5L.</p>
+            <form id="orderForm" class="cta-form">
+                <input type="email" id="emailInput" placeholder="Entrez votre adresse email..." required>
+                <button type="submit" class="btn btn-primary">Réserver mon pack</button>
+            </form>
+            <div id="formFeedback" class="form-feedback"></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 CristalGlace Premium Auto. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
