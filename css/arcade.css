@@ -1,0 +1,199 @@
+/**
+ * Pac-Man 2D Arcade - Cabinet Bezel & CRT Nostalgia Filter
+ */
+
+.arcade-wrapper {
+  max-width: 900px;
+  margin: 1.5rem auto 3rem auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* The physical arcade cabinet frame */
+.arcade-cabinet {
+  background: linear-gradient(145deg, #181c33, #0a0c17);
+  border: 4px solid #28305c;
+  border-radius: 20px;
+  box-shadow: 
+    0 10px 40px rgba(0, 0, 0, 0.8),
+    0 0 25px rgba(0, 229, 255, 0.25),
+    inset 0 2px 6px rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 660px;
+  position: relative;
+}
+
+/* Top Marquee */
+.arcade-marquee {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #05060f;
+  border: 2px solid #3d4a85;
+  border-radius: 10px;
+  padding: 0.8rem 1.2rem;
+  margin-bottom: 1.2rem;
+  box-shadow: inset 0 0 15px rgba(0, 229, 255, 0.15);
+}
+
+.marquee-badge {
+  font-family: var(--font-retro);
+  font-size: 0.75rem;
+  color: #ff3366;
+  text-shadow: 0 0 8px rgba(255, 51, 102, 0.7);
+  letter-spacing: 2px;
+}
+
+.marquee-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.marquee-title img {
+  height: 30px;
+  filter: drop-shadow(0 0 5px var(--pac-yellow));
+}
+
+.marquee-controls {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.icon-btn {
+  background: #151a33;
+  border: 1px solid #3d4b80;
+  color: var(--text-main);
+  padding: 0.4rem 0.7rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-family: var(--font-retro);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s ease;
+}
+
+.icon-btn:hover {
+  background: #252e5a;
+  color: var(--neon-blue);
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+}
+
+.icon-btn.active {
+  background: rgba(0, 229, 255, 0.2);
+  color: var(--neon-blue);
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+}
+
+/* Screen Housing (CRT Container) */
+.arcade-screen {
+  background: #000000;
+  border-radius: 12px;
+  border: 3px solid #1a1e38;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    inset 0 0 40px rgba(0, 0, 0, 0.95),
+    0 0 15px rgba(0, 0, 0, 0.8);
+}
+
+/* CRT Scanlines and curvature filter */
+.arcade-screen.crt-active::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%);
+  background-size: 100% 4px;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.arcade-screen.crt-active::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: radial-gradient(circle at center, transparent 65%, rgba(0, 0, 0, 0.65) 100%);
+  z-index: 11;
+  pointer-events: none;
+}
+
+/* HUD Top Bar */
+.arcade-hud {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.75rem 0.5rem 0.5rem 0.5rem;
+  background: #000000;
+  border-bottom: 1px solid #11142a;
+  user-select: none;
+}
+
+.hud-item {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.hud-label {
+  font-family: var(--font-retro);
+  font-size: 0.68rem;
+  color: #ff3333;
+  letter-spacing: 1px;
+}
+
+.hud-label.cyan {
+  color: var(--neon-blue);
+}
+
+.hud-value {
+  font-family: var(--font-retro);
+  font-size: 1rem;
+  color: #ffffff;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+}
+
+/* Bottom status bar in arcade screen */
+.arcade-status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 1rem;
+  background: #000000;
+  border-top: 1px solid #11142a;
+}
+
+.lives-container {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  min-height: 24px;
+}
+
+.life-icon {
+  width: 22px;
+  height: 22px;
+  filter: drop-shadow(0 0 3px var(--pac-yellow));
+}
+
+.fruits-container {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  min-height: 24px;
+}
+
+.fruit-icon {
+  width: 22px;
+  height: 22px;
+  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
+}

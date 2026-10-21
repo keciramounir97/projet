@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Play | PAC-MAN 2D Arcade</title>
+  <meta name="description" content="Learn how to play Pac-Man: controls, scoring system, power energizers, bonus fruits, and tips to achieve high scores.">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/arcade.css">
+  <link rel="stylesheet" href="../css/game.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/svg/pacman.svg">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="arcade-header">
+    <div class="nav-container">
+      <a href="../index.html" class="brand-logo">
+        <img src="../assets/svg/pacman.svg" alt="Pac-Man Logo">
+        <span class="brand-title">PAC-MAN</span>
+        <span class="brand-tag">2D Arcade</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">🕹️ Play Game</a></li>
+          <li><a href="how-to-play.html" class="nav-link active">📖 How to Play</a></li>
+          <li><a href="characters.html" class="nav-link">👻 Characters</a></li>
+          <li><a href="high-scores.html" class="nav-link">🏆 High Scores</a></li>
+          <li><a href="settings.html" class="nav-link">⚙️ Settings</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-container">
+    <div class="page-header">
+      <h1 class="page-title">HOW TO PLAY</h1>
+      <p class="page-desc">Master the classic arcade rules, learn controls, and discover strategies to outsmart the ghost gang!</p>
+    </div>
+
+    <!-- Objective Card -->
+    <section class="content-card">
+      <h2 class="card-title">
+        <img src="../assets/svg/pacman.svg" alt="Pac-Man" class="icon">
+        Game Objective
+      </h2>
+      <p>Navigate Pac-Man through the neon maze eating all <strong>244 dots</strong> (240 pellets and 4 energizers) while avoiding the four ghosts: Blinky, Pinky, Inky, and Clyde. Clearing the maze advances you to the next level with increased speed and higher fruit bonuses.</p>
+    </section>
+
+    <!-- Controls Card -->
+    <section class="content-card">
+      <h2 class="card-title">
+        <img src="../assets/svg/gamepad.svg" alt="Gamepad" class="icon">
+        Controls & Navigation
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+        <div style="background: rgba(10, 12, 26, 0.7); padding: 1.2rem; border-radius: 8px; border: 1px solid rgba(0, 229, 255, 0.2);">
+          <h3 style="color: var(--pac-yellow); font-family: var(--font-retro); font-size: 0.85rem; margin-bottom: 0.8rem;">Desktop Keyboard</h3>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem;">
+            <li><span class="kbd">▲</span> <span class="kbd">W</span> : Move Up</li>
+            <li><span class="kbd">▼</span> <span class="kbd">S</span> : Move Down</li>
+            <li><span class="kbd">◀</span> <span class="kbd">A</span> : Move Left</li>
+            <li><span class="kbd">▶</span> <span class="kbd">D</span> : Move Right</li>
+            <li><span class="kbd">SPACE</span> or <span class="kbd">P</span> : Pause / Resume</li>
+          </ul>
+        </div>
+        <div style="background: rgba(10, 12, 26, 0.7); padding: 1.2rem; border-radius: 8px; border: 1px solid rgba(0, 229, 255, 0.2);">
+          <h3 style="color: var(--neon-blue); font-family: var(--font-retro); font-size: 0.85rem; margin-bottom: 0.8rem;">Touch & Mobile</h3>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem;">
+            <li><strong>Virtual D-Pad:</strong> Tap directional arrows on screen.</li>
+            <li><strong>Swipe Gestures:</strong> Swipe your finger across the maze in any direction.</li>
+            <li><strong>Corner Buffering:</strong> Pre-input turns before reaching an intersection for instant cornering!</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scoring System Card -->
+    <section class="content-card">
+      <h2 class="card-title">
+        <img src="../assets/svg/trophy.svg" alt="Trophy" class="icon">
+        Scoring System
+      </h2>
+      <table class="scores-table">
+        <thead>
+          <tr>
+            <th>Target Item</th>
+            <th>Visual</th>
+            <th>Points Awarded</th>
+            <th>Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Normal Pellet</strong></td>
+            <td><img src="../assets/svg/pellet.svg" alt="Pellet" style="width: 14px; height: 14px;"></td>
+            <td class="rank-gold">10 PTS</td>
+            <td>Clear all to complete the stage</td>
+          </tr>
+          <tr>
+            <td><strong>Energizer (Power Pellet)</strong></td>
+            <td><img src="../assets/svg/energizer.svg" alt="Energizer" style="width: 22px; height: 22px;"></td>
+            <td class="rank-gold">50 PTS</td>
+            <td>Turns all ghosts blue (Frightened mode)</td>
+          </tr>
+          <tr>
+            <td><strong>1st Ghost Eaten</strong></td>
+            <td><img src="../assets/svg/ghost-scared.svg" alt="Scared Ghost" style="width: 22px; height: 22px;"></td>
+            <td class="rank-gold">200 PTS</td>
+            <td>Eyes retreat to ghost house</td>
+          </tr>
+          <tr>
+            <td><strong>2nd Ghost Eaten</strong></td>
+            <td><img src="../assets/svg/ghost-scared.svg" alt="Scared Ghost" style="width: 22px; height: 22px;"></td>
+            <td class="rank-gold">400 PTS</td>
+            <td>Chained during single energizer</td>
+          </tr>
+          <tr>
+            <td><strong>3rd Ghost Eaten</strong></td>
+            <td><img src="../assets/svg/ghost-scared.svg" alt="Scared Ghost" style="width: 22px; height: 22px;"></td>
+            <td class="rank-gold">800 PTS</td>
+            <td>Chained during single energizer</td>
+          </tr>
+          <tr>
+            <td><strong>4th Ghost Eaten</strong></td>
+            <td><img src="../assets/svg/ghost-scared.svg" alt="Scared Ghost" style="width: 22px; height: 22px;"></td>
+            <td class="rank-gold">1,600 PTS</td>
+            <td>Maximum ghost combo multiplier!</td>
+          </tr>
+          <tr>
+            <td><strong>Extra Life</strong></td>
+            <td><img src="../assets/svg/life.svg" alt="Life" style="width: 22px; height: 22px;"></td>
+            <td class="rank-gold">10,000 PTS</td>
+            <td>Awarded once when score reaches 10,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Strategy Tips -->
+    <section class="content-card">
+      <h2 class="card-title">💡 Pro Arcade Tips</h2>
+      <ul style="display: flex; flex-direction: column; gap: 0.8rem; padding-left: 1.2rem; font-size: 0.95rem;">
+        <li><strong>Use the Side Tunnels:</strong> Ghosts move at half speed inside the side tunnel wrapping passages, while Pac-Man traverses them at normal speed!</li>
+        <li><strong>Pre-Turn Corners:</strong> Input your next direction before you reach an intersection. Pac-Man will corner instantly without bumping into the wall.</li>
+        <li><strong>Watch the Blinking Warning:</strong> When blue ghosts begin flashing white, their frightened period is ending—retreat immediately!</li>
+        <li><strong>Bonus Fruits:</strong> A bonus fruit appears twice per level (after eating 70 and 170 dots). Grab it within 10 seconds for massive score boosts.</li>
+      </ul>
+      <div style="margin-top: 1.5rem; text-align: center;">
+        <a href="../index.html" class="arcade-btn pulse">Jump Into the Game</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="arcade-footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="../index.html">Play Game</a>
+        <a href="characters.html">Characters</a>
+        <a href="high-scores.html">High Scores</a>
+        <a href="settings.html">Settings</a>
+      </div>
+      <p>© 2026 PAC-MAN 2D Arcade Web Edition.</p>
+    </div>
+  </footer>
+</body>
+</html>

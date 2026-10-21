@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arcade Settings | PAC-MAN 2D Arcade</title>
+  <meta name="description" content="Customize Pac-Man audio volume, maze color themes, CRT scanline nostalgia effects, and speed.">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/arcade.css">
+  <link rel="stylesheet" href="../css/game.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/svg/pacman.svg">
+  <style>
+    .setting-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .setting-label {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .setting-sub {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      font-weight: 400;
+    }
+    .theme-picker {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+    .theme-card {
+      border: 2px solid #28305c;
+      border-radius: 8px;
+      padding: 0.6rem 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #0f1329;
+      color: var(--text-dim);
+      font-family: var(--font-retro);
+      font-size: 0.75rem;
+      transition: all 0.2s;
+    }
+    .theme-card:hover {
+      border-color: var(--neon-blue);
+      color: #fff;
+    }
+    .theme-card.active {
+      border-color: var(--pac-yellow);
+      background: rgba(255, 255, 0, 0.12);
+      color: var(--pac-yellow);
+      box-shadow: 0 0 12px rgba(255, 255, 0, 0.3);
+    }
+    .theme-swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+    }
+    /* Toggle switch */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 52px;
+      height: 28px;
+    }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #1b203d;
+      transition: .3s;
+      border-radius: 28px;
+      border: 1px solid #3d4a82;
+    }
+    .slider:before {
+      position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px;
+      background-color: #fff;
+      transition: .3s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: var(--neon-blue);
+      box-shadow: 0 0 10px var(--neon-blue);
+    }
+    input:checked + .slider:before {
+      transform: translateX(24px);
+      background-color: #060914;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="arcade-header">
+    <div class="nav-container">
+      <a href="../index.html" class="brand-logo">
+        <img src="../assets/svg/pacman.svg" alt="Pac-Man Logo">
+        <span class="brand-title">PAC-MAN</span>
+        <span class="brand-tag">2D Arcade</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">🕹️ Play Game</a></li>
+          <li><a href="how-to-play.html" class="nav-link">📖 How to Play</a></li>
+          <li><a href="characters.html" class="nav-link">👻 Characters</a></li>
+          <li><a href="high-scores.html" class="nav-link">🏆 High Scores</a></li>
+          <li><a href="settings.html" class="nav-link active">⚙️ Settings</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-container">
+    <div class="page-header">
+      <h1 class="page-title">ARCADE SETTINGS</h1>
+      <p class="page-desc">Fine-tune your retro experience, audio synthesizer, themes, and screen curvature filters.</p>
+    </div>
+
+    <section class="content-card">
+      <h2 class="card-title">🎮 Display & Visuals</h2>
+
+      <!-- CRT Filter Toggle -->
+      <div class="setting-row">
+        <div class="setting-label">
+          CRT Scanlines Filter
+          <span class="setting-sub">Authentic arcade monitor scanlines, curvature, and subtle phosphor bloom.</span>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="toggle-crt" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <!-- Maze Color Theme Picker -->
+      <div class="setting-row">
+        <div class="setting-label">
+          Maze Color Palette
+          <span class="setting-sub">Select the glowing neon color of the arcade maze walls.</span>
+        </div>
+        <div class="theme-picker">
+          <div class="theme-card active" data-theme="classic">
+            <span class="theme-swatch" style="background: #2121ff; box-shadow: 0 0 6px #2121ff;"></span>
+            Classic Blue
+          </div>
+          <div class="theme-card" data-theme="neon">
+            <span class="theme-swatch" style="background: #00ffff; box-shadow: 0 0 6px #00ffff;"></span>
+            Neon Cyan
+          </div>
+          <div class="theme-card" data-theme="amber">
+            <span class="theme-swatch" style="background: #ff9900; box-shadow: 0 0 6px #ff9900;"></span>
+            Retro Amber
+          </div>
+          <div class="theme-card" data-theme="matrix">
+            <span class="theme-swatch" style="background: #00ff66; box-shadow: 0 0 6px #00ff66;"></span>
+            Matrix Green
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Audio Section -->
+    <section class="content-card">
+      <h2 class="card-title">🔊 8-Bit Audio Synthesizer</h2>
+
+      <div class="setting-row">
+        <div class="setting-label">
+          Sound Effects
+          <span class="setting-sub">Enable synthesized retro waka-waka, sirens, eat sounds, and chimes.</span>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="toggle-sound" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+    </section>
+
+    <!-- Save Confirmation -->
+    <div style="text-align: center; margin-top: 1rem;">
+      <a href="../index.html" class="arcade-btn pulse">Apply & Play Game</a>
+    </div>
+  </main>
+
+  <footer class="arcade-footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="../index.html">Play Game</a>
+        <a href="how-to-play.html">How to Play</a>
+        <a href="characters.html">Characters</a>
+        <a href="high-scores.html">High Scores</a>
+      </div>
+      <p>© 2026 PAC-MAN 2D Arcade Web Edition.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // CRT Toggle
+      const crtInput = document.getElementById('toggle-crt');
+      crtInput.checked = localStorage.getItem('pacman_crt') !== 'false';
+      crtInput.addEventListener('change', () => {
+        localStorage.setItem('pacman_crt', crtInput.checked.toString());
+      });
+
+      // Sound Toggle
+      const soundInput = document.getElementById('toggle-sound');
+      soundInput.checked = localStorage.getItem('pacman_muted') !== 'true';
+      soundInput.addEventListener('change', () => {
+        localStorage.setItem('pacman_muted', (!soundInput.checked).toString());
+      });
+
+      // Theme Picker
+      const currentTheme = localStorage.getItem('pacman_theme') || 'classic';
+      const themeCards = document.querySelectorAll('.theme-card');
+      themeCards.forEach(card => {
+        if (card.dataset.theme === currentTheme) {
+          card.classList.add('active');
+        } else {
+          card.classList.remove('active');
+        }
+        card.addEventListener('click', () => {
+          themeCards.forEach(c => c.classList.remove('active'));
+          card.classList.add('active');
+          localStorage.setItem('pacman_theme', card.dataset.theme);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

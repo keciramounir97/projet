@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <filter id="blueGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#0055FF" flood-opacity="0.8"/>
+    </filter>
+  </defs>
+  <!-- Scared Body -->
+  <path d="M 10,50 A 40,40 0 0,1 90,50 L 90,88 L 76.6,76 L 63.3,88 L 50,76 L 36.6,88 L 23.3,76 L 10,88 Z" fill="#2121DE" filter="url(#blueGlow)"/>
+  <!-- Classic scared eyes (white/orange squares or circles) -->
+  <circle cx="38" cy="40" r="5" fill="#FFAAAA"/>
+  <circle cx="62" cy="40" r="5" fill="#FFAAAA"/>
+  <!-- Classic squiggly mouth -->
+  <path d="M 22,64 L 31,56 L 40,64 L 50,56 L 59,64 L 68,56 L 77,64" fill="none" stroke="#FFAAAA" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

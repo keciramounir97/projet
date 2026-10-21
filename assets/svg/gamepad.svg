@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect x="8" y="16" width="48" height="32" rx="10" fill="#1f2438" stroke="#00FFFF" stroke-width="3"/>
+  <!-- D-Pad -->
+  <path d="M 20,24 H 24 V 28 H 28 V 32 H 24 V 36 H 20 V 32 H 16 V 28 H 20 Z" fill="#00FFFF"/>
+  <!-- Action Buttons -->
+  <circle cx="44" cy="27" r="3" fill="#FF0055"/>
+  <circle cx="48" cy="33" r="3" fill="#FFD700"/>
+  <circle cx="40" cy="33" r="3" fill="#00FF66"/>
+  <circle cx="44" cy="39" r="3" fill="#3388FF"/>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <filter id="fruitGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="2.5" flood-color="#FF1144" flood-opacity="0.8"/>
+    </filter>
+  </defs>
+  <!-- Stems -->
+  <path d="M 65,15 Q 45,25 35,55" fill="none" stroke="#A07030" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M 65,15 Q 70,30 68,55" fill="none" stroke="#A07030" stroke-width="4.5" stroke-linecap="round"/>
+  <!-- Stem joint leaf / top -->
+  <path d="M 65,15 Q 75,10 82,14" fill="none" stroke="#33CC33" stroke-width="4" stroke-linecap="round"/>
+  <!-- Left Cherry -->
+  <circle cx="34" cy="65" r="22" fill="#EE0022" filter="url(#fruitGlow)"/>
+  <circle cx="28" cy="58" r="6" fill="#FFAAAA" opacity="0.8"/>
+  <!-- Right Cherry -->
+  <circle cx="68" cy="65" r="22" fill="#DD0011" filter="url(#fruitGlow)"/>
+  <circle cx="62" cy="58" r="6" fill="#FFAAAA" opacity="0.8"/>
+</svg>

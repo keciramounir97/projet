@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>High Scores & Hall of Fame | PAC-MAN 2D Arcade</title>
+  <meta name="description" content="View top scores and hall of fame achievements for Pac-Man 2D Arcade.">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/arcade.css">
+  <link rel="stylesheet" href="../css/game.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/svg/pacman.svg">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="arcade-header">
+    <div class="nav-container">
+      <a href="../index.html" class="brand-logo">
+        <img src="../assets/svg/pacman.svg" alt="Pac-Man Logo">
+        <span class="brand-title">PAC-MAN</span>
+        <span class="brand-tag">2D Arcade</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">🕹️ Play Game</a></li>
+          <li><a href="how-to-play.html" class="nav-link">📖 How to Play</a></li>
+          <li><a href="characters.html" class="nav-link">👻 Characters</a></li>
+          <li><a href="high-scores.html" class="nav-link active">🏆 High Scores</a></li>
+          <li><a href="settings.html" class="nav-link">⚙️ Settings</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-container">
+    <div class="page-header">
+      <h1 class="page-title">HALL OF FAME</h1>
+      <p class="page-desc">Track your lifetime arcade records, achievements, and top scoring runs.</p>
+    </div>
+
+    <!-- Career Stats Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+      <div class="content-card" style="margin-bottom: 0; text-align: center; padding: 1.2rem;">
+        <div style="font-size: 0.8rem; color: var(--neon-blue); font-family: var(--font-retro);">ALL-TIME HIGH</div>
+        <div id="stat-high-score" style="font-size: 1.8rem; font-family: var(--font-retro); color: var(--pac-yellow); margin-top: 0.5rem;">00</div>
+      </div>
+      <div class="content-card" style="margin-bottom: 0; text-align: center; padding: 1.2rem;">
+        <div style="font-size: 0.8rem; color: var(--neon-blue); font-family: var(--font-retro);">GAMES PLAYED</div>
+        <div id="stat-games-played" style="font-size: 1.8rem; font-family: var(--font-retro); color: #ffffff; margin-top: 0.5rem;">0</div>
+      </div>
+      <div class="content-card" style="margin-bottom: 0; text-align: center; padding: 1.2rem;">
+        <div style="font-size: 0.8rem; color: var(--neon-blue); font-family: var(--font-retro);">BEST LEVEL</div>
+        <div id="stat-best-level" style="font-size: 1.8rem; font-family: var(--font-retro); color: #00ff88; margin-top: 0.5rem;">L1</div>
+      </div>
+    </div>
+
+    <!-- Leaderboard Table -->
+    <section class="content-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; flex-wrap: wrap; gap: 1rem;">
+        <h2 class="card-title" style="margin-bottom: 0;">
+          <img src="../assets/svg/trophy.svg" alt="Trophy" class="icon">
+          Recent High Scores
+        </h2>
+        <button id="btn-clear-scores" class="arcade-btn btn-pink" style="font-size: 0.65rem; padding: 0.4rem 0.8rem;">
+          Clear History
+        </button>
+      </div>
+
+      <table class="scores-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Date</th>
+            <th>Level Reached</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody id="scores-body">
+          <!-- Populated by JS -->
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Achievements & Badges -->
+    <section class="content-card">
+      <h2 class="card-title">🎖️ Arcade Achievements</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem;">
+        
+        <div style="background: rgba(14, 18, 38, 0.7); border: 1px solid rgba(255,255,0,0.3); border-radius: 8px; padding: 1rem; display: flex; gap: 0.8rem; align-items: center;">
+          <img src="../assets/svg/cherry.svg" alt="Cherry" style="width: 40px; height: 40px;">
+          <div>
+            <div style="font-family: var(--font-retro); font-size: 0.75rem; color: var(--pac-yellow);">FIRST TASTE</div>
+            <div style="font-size: 0.8rem; color: var(--text-dim);">Eat your first cherry bonus fruit.</div>
+          </div>
+        </div>
+
+        <div style="background: rgba(14, 18, 38, 0.7); border: 1px solid rgba(0,255,255,0.3); border-radius: 8px; padding: 1rem; display: flex; gap: 0.8rem; align-items: center;">
+          <img src="../assets/svg/ghost-scared.svg" alt="Ghost" style="width: 40px; height: 40px;">
+          <div>
+            <div style="font-family: var(--font-retro); font-size: 0.75rem; color: var(--neon-blue);">GHOST HUNTER</div>
+            <div style="font-size: 0.8rem; color: var(--text-dim);">Eat all 4 ghosts in a single energizer.</div>
+          </div>
+        </div>
+
+        <div style="background: rgba(14, 18, 38, 0.7); border: 1px solid rgba(0,255,136,0.3); border-radius: 8px; padding: 1rem; display: flex; gap: 0.8rem; align-items: center;">
+          <img src="../assets/svg/life.svg" alt="Life" style="width: 40px; height: 40px;">
+          <div>
+            <div style="font-family: var(--font-retro); font-size: 0.75rem; color: #00ff88);">TEN GRAND</div>
+            <div style="font-size: 0.8rem; color: var(--text-dim);">Reach 10,000 points and earn an extra life.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="arcade-footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="../index.html">Play Game</a>
+        <a href="how-to-play.html">How to Play</a>
+        <a href="characters.html">Characters</a>
+        <a href="settings.html">Settings</a>
+      </div>
+      <p>© 2026 PAC-MAN 2D Arcade Web Edition.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const highScore = parseInt(localStorage.getItem('pacman_high_score') || '0', 10);
+      const gamesPlayed = parseInt(localStorage.getItem('pacman_games_played') || '0', 10);
+      const history = JSON.parse(localStorage.getItem('pacman_history') || '[]');
+
+      document.getElementById('stat-high-score').textContent = highScore.toLocaleString();
+      document.getElementById('stat-games-played').textContent = gamesPlayed.toLocaleString();
+
+      let maxLevel = 1;
+      history.forEach(h => {
+        if (h.level > maxLevel) maxLevel = h.level;
+      });
+      document.getElementById('stat-best-level').textContent = `L${maxLevel}`;
+
+      const tbody = document.getElementById('scores-body');
+      
+      const renderTable = () => {
+        tbody.innerHTML = '';
+        if (history.length === 0) {
+          // Provide retro hall of fame defaults if no games played yet
+          const defaultRuns = [
+            { date: 'Arcade Classic', level: 5, score: 32400 },
+            { date: 'Arcade Classic', level: 4, score: 21800 },
+            { date: 'Arcade Classic', level: 3, score: 14500 },
+            { date: 'Arcade Classic', level: 2, score: 8600 },
+            { date: 'Arcade Classic', level: 1, score: 3200 }
+          ];
+          defaultRuns.forEach((run, idx) => {
+            const tr = document.createElement('tr');
+            const rankClass = idx === 0 ? 'rank-gold' : (idx === 1 ? 'rank-silver' : (idx === 2 ? 'rank-bronze' : ''));
+            tr.innerHTML = `
+              <td class="${rankClass}">#${idx + 1}</td>
+              <td>${run.date}</td>
+              <td>Level ${run.level}</td>
+              <td class="rank-gold">${run.score.toLocaleString()} PTS</td>
+            `;
+            tbody.appendChild(tr);
+          });
+          return;
+        }
+
+        // Sort history by score descending
+        const sorted = [...history].sort((a, b) => b.score - a.score);
+        sorted.forEach((run, idx) => {
+          const tr = document.createElement('tr');
+          const rankClass = idx === 0 ? 'rank-gold' : (idx === 1 ? 'rank-silver' : (idx === 2 ? 'rank-bronze' : ''));
+          tr.innerHTML = `
+            <td class="${rankClass}">#${idx + 1}</td>
+            <td>${run.date}</td>
+            <td>Level ${run.level}</td>
+            <td class="rank-gold">${run.score.toLocaleString()} PTS</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      };
+
+      renderTable();
+
+      document.getElementById('btn-clear-scores').addEventListener('click', () => {
+        if (confirm('Are you sure you want to reset your score history?')) {
+          localStorage.removeItem('pacman_history');
+          localStorage.removeItem('pacman_high_score');
+          localStorage.removeItem('pacman_games_played');
+          location.reload();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

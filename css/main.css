@@ -1,0 +1,261 @@
+/**
+ * Pac-Man 2D Arcade - Core Layout & Global Styles
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --bg-primary: #070714;
+  --bg-card: rgba(18, 20, 39, 0.75);
+  --bg-card-border: rgba(0, 255, 255, 0.25);
+  
+  --pac-yellow: #FFFF00;
+  --neon-blue: #00e5ff;
+  --neon-pink: #ff0077;
+  --neon-green: #00ff88;
+  --neon-orange: #ff9900;
+  --text-main: #f0f4fc;
+  --text-dim: #9aa8cc;
+
+  --font-retro: 'Press Start 2P', monospace;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --glow-yellow: 0 0 12px rgba(255, 255, 0, 0.75);
+  --glow-blue: 0 0 12px rgba(0, 229, 255, 0.7);
+  --glow-pink: 0 0 12px rgba(255, 0, 119, 0.7);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  background-image: 
+    radial-gradient(circle at 50% 10%, rgba(20, 24, 60, 0.8) 0%, rgba(7, 7, 20, 1) 75%),
+    linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 36px 36px, 36px 36px;
+  color: var(--text-main);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* Header & Arcade Navbar */
+.arcade-header {
+  background: rgba(10, 12, 28, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 2px solid rgba(0, 229, 255, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.brand-logo img {
+  height: 38px;
+  width: auto;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 0, 0.6));
+  transition: transform 0.25s ease;
+}
+
+.brand-logo:hover img {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.brand-title {
+  font-family: var(--font-retro);
+  font-size: 1.1rem;
+  color: var(--pac-yellow);
+  text-shadow: var(--glow-yellow);
+  letter-spacing: 1px;
+}
+
+.brand-tag {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.75rem;
+  color: var(--neon-blue);
+  background: rgba(0, 229, 255, 0.15);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid var(--neon-blue);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.nav-link {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+  background: rgba(0, 229, 255, 0.12);
+  text-shadow: 0 0 8px var(--neon-blue);
+}
+
+.nav-link.active {
+  color: var(--pac-yellow);
+  background: rgba(255, 255, 0, 0.12);
+  border: 1px solid rgba(255, 255, 0, 0.3);
+  text-shadow: 0 0 8px rgba(255, 255, 0, 0.5);
+}
+
+/* Button & Control Styles */
+.arcade-btn {
+  font-family: var(--font-retro);
+  font-size: 0.75rem;
+  background: linear-gradient(180deg, #1f2747 0%, #0e1224 100%);
+  color: var(--neon-blue);
+  border: 2px solid var(--neon-blue);
+  padding: 0.65rem 1.1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.3), inset 0 0 6px rgba(0, 229, 255, 0.2);
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.arcade-btn:hover {
+  background: var(--neon-blue);
+  color: #050711;
+  box-shadow: 0 0 20px var(--neon-blue);
+  transform: translateY(-2px);
+}
+
+.arcade-btn:active {
+  transform: translateY(1px);
+}
+
+.arcade-btn.btn-pink {
+  color: var(--neon-pink);
+  border-color: var(--neon-pink);
+  box-shadow: 0 0 10px rgba(255, 0, 119, 0.3), inset 0 0 6px rgba(255, 0, 119, 0.2);
+}
+
+.arcade-btn.btn-pink:hover {
+  background: var(--neon-pink);
+  color: #ffffff;
+  box-shadow: 0 0 20px var(--neon-pink);
+}
+
+.arcade-btn.btn-yellow {
+  color: var(--pac-yellow);
+  border-color: var(--pac-yellow);
+  box-shadow: 0 0 10px rgba(255, 255, 0, 0.3);
+}
+
+.arcade-btn.btn-yellow:hover {
+  background: var(--pac-yellow);
+  color: #000000;
+  box-shadow: 0 0 20px var(--pac-yellow);
+}
+
+.arcade-btn.pulse {
+  animation: arcadePulse 1.5s infinite;
+}
+
+@keyframes arcadePulse {
+  0%, 100% {
+    box-shadow: 0 0 10px var(--neon-blue);
+  }
+  50% {
+    box-shadow: 0 0 25px var(--neon-blue), inset 0 0 12px var(--neon-blue);
+  }
+}
+
+/* Footer */
+.arcade-footer {
+  margin-top: auto;
+  background: rgba(8, 10, 20, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-links a {
+  color: var(--neon-blue);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+  .nav-container {
+    flex-direction: column;
+    padding: 0.8rem;
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

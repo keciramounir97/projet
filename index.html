@@ -1,107 +1,156 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CristalGlace | Lave-Glace Premium Automobile</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PAC-MAN 2D Arcade | Classic Web Game</title>
+  <meta name="description" content="Play the authentic 2D Pac-Man arcade game right in your browser! Featuring classic ghost AI, retro synthesized audio, CRT scanlines, and responsive controls.">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/arcade.css">
+  <link rel="stylesheet" href="css/game.css">
+  
+  <link rel="icon" type="image/svg+xml" href="assets/svg/pacman.svg">
 </head>
 <body>
-    <header class="navbar">
-        <div class="container nav-container">
-            <div class="logo">
-                <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="50" cy="50" r="45" fill="none" stroke="url(#premiumGlow)" stroke-width="2.5"/>
-                    <path d="M30 45 L50 25 L70 45" fill="none" stroke="#00d2ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M25 65 C 40 55, 60 75, 75 65" fill="none" stroke="#0072ff" stroke-width="3.5" stroke-linecap="round"/>
-                    <circle cx="50" cy="45" r="3" fill="#ffffff"/>
-                    <defs>
-                        <linearGradient id="premiumGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#00d2ff" />
-                            <stop offset="100%" stop-color="#0072ff" />
-                        </linearGradient>
-                    </defs>
-                </svg>
-                <span class="logo-text">CRISTAL<span class="highlight">GLACE</span></span>
-            </div>
-            <nav class="nav-links">
-                <a href="#features">Avantages</a>
-                <a href="#product">Le Produit</a>
-                <a href="#testimonials">Avis</a>
-            </nav>
-            <a href="#cta-section" class="btn btn-secondary">Commander</a>
-        </div>
-    </header>
 
-    <section class="hero">
-        <div class="container hero-container">
-            <div class="hero-text">
-                <span class="badge">Édition Ultra Performance 2026</span>
-                <h1>Une visibilité absolue, <br><span class="gradient-text">un éclat incomparable.</span></h1>
-                <p>Découvrez CristalGlace Haute Performance. Sa formule technologique exclusive élimine instantanément les films routiers, les insectes et le givre, protégeant vos essuie-glaces tout en laissant un parfum délicat haut de gamme.</p>
-                <div class="hero-actions">
-                    <a href="#cta-section" class="btn btn-primary">Acheter Maintenant</a>
-                    <a href="#features" class="btn btn-outline">En savoir plus</a>
-                </div>
-            </div>
-            <div class="hero-image-container">
-                <div class="product-glow"></div>
-                <div class="fluid-mockup">
-                    <div class="cap"></div>
-                    <div class="handle-hole"></div>
-                    <div class="liquid-level"></div>
-                    <div class="label-mock">
-                        <div class="label-brand">CRISTAL GLACE</div>
-                        <div class="label-sub">LAVE-GLACE PREMIUM</div>
-                        <div class="label-car"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Top Navigation Header -->
+  <header class="arcade-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <img src="assets/svg/pacman.svg" alt="Pac-Man Logo">
+        <span class="brand-title">PAC-MAN</span>
+        <span class="brand-tag">2D Arcade</span>
+      </a>
 
-    <section id="features" class="features">
-        <div class="container">
-            <h2 class="section-title">Conçu pour l'Excellence</h2>
-            <div class="grid">
-                <div class="card">
-                    <div class="card-icon">✨</div>
-                    <h3>Zéro Traces</h3>
-                    <p>Technologie hydrophobe avancée assurant un pare-brise parfaitement transparent sous toutes les météos.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">⚡</div>
-                    <h3>Action Instantanée</h3>
-                    <p>Dissout instantanément les corps gras, insectes et résidus routiers tenaces en un seul passage d'essuie-glace.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">❄️</div>
-                    <h3>Anti-Givre Évolué</h3>
-                    <p>Protection active efficace contre le gel sévère, prévenant la formation de givre instantané en cours de conduite.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link active">🕹️ Play Game</a></li>
+          <li><a href="html/how-to-play.html" class="nav-link">📖 How to Play</a></li>
+          <li><a href="html/characters.html" class="nav-link">👻 Characters</a></li>
+          <li><a href="html/high-scores.html" class="nav-link">🏆 High Scores</a></li>
+          <li><a href="html/settings.html" class="nav-link">⚙️ Settings</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <section id="cta-section" class="cta">
-        <div class="container cta-container">
-            <h2>Passez à la clarté absolue dès aujourd'hui</h2>
-            <p>Profitez de notre offre exclusive de lancement : <strong>Livraison offerte</strong> pour tout achat de pack premium de 5L.</p>
-            <form id="orderForm" class="cta-form">
-                <input type="email" id="emailInput" placeholder="Entrez votre adresse email..." required>
-                <button type="submit" class="btn btn-primary">Réserver mon pack</button>
-            </form>
-            <div id="formFeedback" class="form-feedback"></div>
+  <!-- Main Arcade Playground -->
+  <main class="arcade-wrapper">
+    
+    <div class="arcade-cabinet">
+      <!-- Marquee Header -->
+      <div class="arcade-marquee">
+        <div class="marquee-title">
+          <img src="assets/svg/pacman.svg" alt="Pac-Man">
+          <span class="marquee-badge">ARCADE 1980 / 2026</span>
         </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 CristalGlace Premium Auto. Tous droits réservés.</p>
+        
+        <div class="marquee-controls">
+          <button id="btn-audio" class="icon-btn" title="Toggle Sound">
+            <span class="icon">🔊</span>
+            <span class="btn-label">Sound</span>
+          </button>
+          <button id="btn-crt" class="icon-btn" title="Toggle CRT Filter">
+            <span class="icon">📺</span>
+            <span class="btn-label">CRT</span>
+          </button>
+          <button id="btn-pause" class="icon-btn" title="Pause Game">
+            <span class="icon">⏸️</span>
+            <span class="btn-label">Pause</span>
+          </button>
+          <button id="btn-restart" class="icon-btn" title="Restart Game">
+            <span class="icon">🔄</span>
+            <span class="btn-label">Restart</span>
+          </button>
         </div>
-    </footer>
+      </div>
 
-    <script src="script.js"></script>
+      <!-- Arcade CRT Screen -->
+      <div id="arcade-screen" class="arcade-screen crt-active">
+        
+        <!-- Retro HUD -->
+        <div class="arcade-hud">
+          <div class="hud-item">
+            <span class="hud-label">1UP SCORE</span>
+            <span id="current-score" class="hud-value">00</span>
+          </div>
+          <div class="hud-item">
+            <span class="hud-label cyan">HIGH SCORE</span>
+            <span id="high-score" class="hud-value">00</span>
+          </div>
+          <div class="hud-item">
+            <span class="hud-label">LEVEL</span>
+            <span id="current-level" class="hud-value">L1</span>
+          </div>
+        </div>
+
+        <!-- Canvas Container -->
+        <div id="game-container">
+          <canvas id="game-canvas"></canvas>
+          
+          <!-- State Banner Overlay (Ready / Game Over / Paused) -->
+          <div id="game-banner" style="display: none;"></div>
+        </div>
+
+        <!-- Bottom Status Bar -->
+        <div class="arcade-status-bar">
+          <div class="lives-container" id="lives-display">
+            <!-- Rendered by UI Engine -->
+          </div>
+          <div class="fruits-container" id="fruits-display">
+            <!-- Rendered by UI Engine -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Cabinet Control Deck Info -->
+      <div class="cabinet-deck">
+        <div class="deck-group">
+          <div class="instruction-tag">
+            <span class="kbd">▲</span><span class="kbd">▼</span><span class="kbd">◀</span><span class="kbd">▶</span> / <span class="kbd">W</span><span class="kbd">A</span><span class="kbd">S</span><span class="kbd">D</span> Move
+          </div>
+          <div class="instruction-tag">
+            <span class="kbd">SPACE</span> or <span class="kbd">P</span> Pause
+          </div>
+        </div>
+        <div class="deck-group">
+          <a href="html/how-to-play.html" class="arcade-btn btn-yellow" style="font-size: 0.65rem; padding: 0.4rem 0.8rem;">Rules & Guide</a>
+        </div>
+      </div>
+
+      <!-- Mobile Touch Virtual D-Pad -->
+      <div class="mobile-controls">
+        <div class="dpad-container">
+          <button id="dpad-up" class="dpad-btn dpad-up" aria-label="Up">▲</button>
+          <button id="dpad-left" class="dpad-btn dpad-left" aria-label="Left">◀</button>
+          <div class="dpad-center"></div>
+          <button id="dpad-right" class="dpad-btn dpad-right" aria-label="Right">▶</button>
+          <button id="dpad-down" class="dpad-btn dpad-down" aria-label="Down">▼</button>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Arcade Footer -->
+  <footer class="arcade-footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="index.html">Play</a>
+        <a href="html/how-to-play.html">How to Play</a>
+        <a href="html/characters.html">Meet the Ghosts</a>
+        <a href="html/high-scores.html">Hall of Fame</a>
+        <a href="html/settings.html">Game Settings</a>
+      </div>
+      <p>© 2026 PAC-MAN 2D Arcade Web Edition. Crafted with pure HTML, Vanilla CSS, Canvas 2D, and Web Audio API.</p>
+    </div>
+  </footer>
+
+  <!-- Main Game Script -->
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>

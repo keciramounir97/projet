@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 120" width="500" height="120">
+  <defs>
+    <linearGradient id="pacYellow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFF200"/>
+      <stop offset="50%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#FF9900"/>
+    </linearGradient>
+    <filter id="neonArcade" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#FFD700" flood-opacity="0.9"/>
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#FF0055" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+  
+  <!-- Pac-man icon on left -->
+  <g transform="translate(15, 15) scale(0.9)">
+    <path d="M 50,50 L 93.3,25 A 50,50 0 1 0 93.3,75 Z" fill="url(#pacYellow)" filter="url(#neonArcade)"/>
+    <circle cx="50" cy="22" r="5" fill="#111122"/>
+  </g>
+
+  <!-- Glowing PAC-MAN text -->
+  <text x="125" y="75" font-family="'Impact', 'Arial Black', sans-serif" font-weight="900" font-size="70" letter-spacing="4" fill="url(#pacYellow)" stroke="#FF0055" stroke-width="4.5" stroke-linejoin="round" filter="url(#neonArcade)">
+    PAC-MAN
+  </text>
+  
+  <!-- 2D ARCADE subtitle -->
+  <text x="130" y="105" font-family="'Courier New', monospace" font-weight="bold" font-size="16" letter-spacing="8" fill="#00FFFF">
+    ARCADE EDITION 2026
+  </text>
+  
+  <!-- Little dots ahead of Pacman -->
+  <circle cx="430" cy="55" r="5" fill="#FFB897"/>
+  <circle cx="455" cy="55" r="5" fill="#FFB897"/>
+  <circle cx="480" cy="55" r="8" fill="#FFFFFF"/>
+</svg>

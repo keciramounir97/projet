@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meet the Characters | PAC-MAN 2D Arcade</title>
+  <meta name="description" content="Discover the unique AI personalities of Blinky, Pinky, Inky, Clyde, and the bonus fruits of Pac-Man.">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/arcade.css">
+  <link rel="stylesheet" href="../css/game.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/svg/pacman.svg">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="arcade-header">
+    <div class="nav-container">
+      <a href="../index.html" class="brand-logo">
+        <img src="../assets/svg/pacman.svg" alt="Pac-Man Logo">
+        <span class="brand-title">PAC-MAN</span>
+        <span class="brand-tag">2D Arcade</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">🕹️ Play Game</a></li>
+          <li><a href="how-to-play.html" class="nav-link">📖 How to Play</a></li>
+          <li><a href="characters.html" class="nav-link active">👻 Characters</a></li>
+          <li><a href="high-scores.html" class="nav-link">🏆 High Scores</a></li>
+          <li><a href="settings.html" class="nav-link">⚙️ Settings</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-container">
+    <div class="page-header">
+      <h1 class="page-title">CHARACTERS & GHOST AI</h1>
+      <p class="page-desc">Every ghost has its own artificial intelligence, strategy, and personality. Learn how they think to stay alive!</p>
+    </div>
+
+    <!-- Pac-Man Showcase -->
+    <section class="content-card" style="display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;">
+      <div style="flex: 0 0 100px; text-align: center;">
+        <img src="../assets/svg/pacman.svg" alt="Pac-Man" style="width: 100px; height: 100px; filter: drop-shadow(0 0 15px rgba(255, 255, 0, 0.7));">
+      </div>
+      <div style="flex: 1; min-width: 250px;">
+        <h2 style="font-family: var(--font-retro); color: var(--pac-yellow); font-size: 1.4rem; margin-bottom: 0.5rem;">PAC-MAN</h2>
+        <p style="color: var(--neon-blue); font-weight: 600; margin-bottom: 0.6rem;">The Legendary Maze Hero</p>
+        <p>Created by Toru Iwatani in 1980, Pac-Man is the eternal consumer of pellets, energizers, and tasty fruit. Quick, agile, and armed with the power of power pellets to turn the hunters into the hunted!</p>
+      </div>
+    </section>
+
+    <!-- The Ghost Gang -->
+    <section class="content-card">
+      <h2 class="card-title">The Four Ghosts</h2>
+      <div class="ghost-grid">
+        
+        <!-- Blinky -->
+        <div class="ghost-card blinky">
+          <img src="../assets/svg/ghost-blinky.svg" alt="Blinky" class="ghost-avatar">
+          <div class="ghost-name" style="color: #ff3333;">BLINKY</div>
+          <div class="ghost-nick">"Shadow" • Red</div>
+          <p class="ghost-role">
+            <strong>Direct Chaser:</strong> Blinky's target is Pac-Man's exact tile. He never relents and speeds up ("Cruise Elroy") as pellets decrease.
+          </p>
+          <span style="font-size: 0.75rem; color: #ff6666;">Corner: Top-Right</span>
+        </div>
+
+        <!-- Pinky -->
+        <div class="ghost-card pinky">
+          <img src="../assets/svg/ghost-pinky.svg" alt="Pinky" class="ghost-avatar">
+          <div class="ghost-name" style="color: #ffb8de;">PINKY</div>
+          <div class="ghost-nick">"Speedy" • Pink</div>
+          <p class="ghost-role">
+            <strong>Ambush Predator:</strong> Pinky aims 4 tiles ahead of Pac-Man's current direction, attempting to cut off your escape route!
+          </p>
+          <span style="font-size: 0.75rem; color: #ffb8de;">Corner: Top-Left</span>
+        </div>
+
+        <!-- Inky -->
+        <div class="ghost-card inky">
+          <img src="../assets/svg/ghost-inky.svg" alt="Inky" class="ghost-avatar">
+          <div class="ghost-name" style="color: #00ffff;">INKY</div>
+          <div class="ghost-nick">"Bashful" • Cyan</div>
+          <p class="ghost-role">
+            <strong>Flanker:</strong> Inky's target uses both Pac-Man's direction and Blinky's coordinates to pincushion Pac-Man between them.
+          </p>
+          <span style="font-size: 0.75rem; color: #00ffff;">Corner: Bottom-Right</span>
+        </div>
+
+        <!-- Clyde -->
+        <div class="ghost-card clyde">
+          <img src="../assets/svg/ghost-clyde.svg" alt="Clyde" class="ghost-avatar">
+          <div class="ghost-name" style="color: #ffb852;">CLYDE</div>
+          <div class="ghost-nick">"Pokey" • Orange</div>
+          <p class="ghost-role">
+            <strong>The Lone Wanderer:</strong> Chases Pac-Man when far away (>8 tiles), but turns timid and retreats to his corner when close!
+          </p>
+          <span style="font-size: 0.75rem; color: #ffb852;">Corner: Bottom-Left</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Frightened & Eaten States -->
+    <section class="content-card">
+      <h2 class="card-title">Ghost States & Behavior</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+        <div style="background: rgba(10, 15, 35, 0.8); border: 1px solid #2121ff; border-radius: 10px; padding: 1.2rem; display: flex; gap: 1rem; align-items: center;">
+          <img src="../assets/svg/ghost-scared.svg" alt="Scared Ghost" style="width: 56px; height: 56px;">
+          <div>
+            <h3 style="font-family: var(--font-retro); font-size: 0.85rem; color: #0088ff; margin-bottom: 0.4rem;">FRIGHTENED STATE</h3>
+            <p style="font-size: 0.85rem; color: var(--text-dim);">Triggered by eating an Energizer. Ghosts turn dark blue, move slower, and flee. Eat them for 200, 400, 800, and 1600 points!</p>
+          </div>
+        </div>
+
+        <div style="background: rgba(10, 15, 35, 0.8); border: 1px solid #ffffff; border-radius: 10px; padding: 1.2rem; display: flex; gap: 1rem; align-items: center;">
+          <img src="../assets/svg/ghost-flashing.svg" alt="Flashing Ghost" style="width: 56px; height: 56px;">
+          <div>
+            <h3 style="font-family: var(--font-retro); font-size: 0.85rem; color: #ffffff; margin-bottom: 0.4rem;">FLASHING WARNING</h3>
+            <p style="font-size: 0.85rem; color: var(--text-dim);">During the final 2 seconds of power pellet mode, ghosts flash white and red to warn that danger is returning!</p>
+          </div>
+        </div>
+
+        <div style="background: rgba(10, 15, 35, 0.8); border: 1px solid #00ffff; border-radius: 10px; padding: 1.2rem; display: flex; gap: 1rem; align-items: center;">
+          <img src="../assets/svg/ghost-eyes.svg" alt="Ghost Eyes" style="width: 56px; height: 56px;">
+          <div>
+            <h3 style="font-family: var(--font-retro); font-size: 0.85rem; color: #00ffff; margin-bottom: 0.4rem;">EATEN (EYES)</h3>
+            <p style="font-size: 0.85rem; color: var(--text-dim);">When Pac-Man chomps a blue ghost, only eyes remain. They travel at double speed back to the ghost house to respawn.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bonus Fruits Table -->
+    <section class="content-card">
+      <h2 class="card-title">
+        <img src="../assets/svg/cherry.svg" alt="Bonus Fruits" class="icon">
+        Bonus Fruit Vault
+      </h2>
+      <p style="margin-bottom: 1rem; color: var(--text-dim);">Fruits appear under the ghost house twice per round (at 70 dots and 170 dots eaten) for 10 seconds:</p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; text-align: center;">
+        
+        <div style="background: rgba(12, 16, 36, 0.8); padding: 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+          <img src="../assets/svg/cherry.svg" alt="Cherry" style="width: 48px; height: 48px; margin-bottom: 0.5rem;">
+          <div style="font-family: var(--font-retro); font-size: 0.75rem; color: #ff3366;">CHERRY</div>
+          <div style="font-size: 0.8rem; color: var(--text-dim);">Level 1</div>
+          <div class="rank-gold" style="font-size: 0.85rem; margin-top: 0.3rem;">100 PTS</div>
+        </div>
+
+        <div style="background: rgba(12, 16, 36, 0.8); padding: 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+          <img src="../assets/svg/strawberry.svg" alt="Strawberry" style="width: 48px; height: 48px; margin-bottom: 0.5rem;">
+          <div style="font-family: var(--font-retro); font-size: 0.75rem; color: #ff3366;">STRAWBERRY</div>
+          <div style="font-size: 0.8rem; color: var(--text-dim);">Level 2</div>
+          <div class="rank-gold" style="font-size: 0.85rem; margin-top: 0.3rem;">300 PTS</div>
+        </div>
+
+        <div style="background: rgba(12, 16, 36, 0.8); padding: 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+          <img src="../assets/svg/orange.svg" alt="Orange" style="width: 48px; height: 48px; margin-bottom: 0.5rem;">
+          <div style="font-family: var(--font-retro); font-size: 0.75rem; color: #ff9900;">ORANGE</div>
+          <div style="font-size: 0.8rem; color: var(--text-dim);">Levels 3-4</div>
+          <div class="rank-gold" style="font-size: 0.85rem; margin-top: 0.3rem;">500 PTS</div>
+        </div>
+
+        <div style="background: rgba(12, 16, 36, 0.8); padding: 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+          <img src="../assets/svg/apple.svg" alt="Apple" style="width: 48px; height: 48px; margin-bottom: 0.5rem;">
+          <div style="font-family: var(--font-retro); font-size: 0.75rem; color: #ff2222;">APPLE</div>
+          <div style="font-size: 0.8rem; color: var(--text-dim);">Levels 5-6</div>
+          <div class="rank-gold" style="font-size: 0.85rem; margin-top: 0.3rem;">700 PTS</div>
+        </div>
+
+        <div style="background: rgba(12, 16, 36, 0.8); padding: 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+          <img src="../assets/svg/melon.svg" alt="Melon" style="width: 48px; height: 48px; margin-bottom: 0.5rem;">
+          <div style="font-family: var(--font-retro); font-size: 0.75rem; color: #00dd66;">MELON</div>
+          <div style="font-size: 0.8rem; color: var(--text-dim);">Levels 7-8</div>
+          <div class="rank-gold" style="font-size: 0.85rem; margin-top: 0.3rem;">1,000 PTS</div>
+        </div>
+
+        <div style="background: rgba(12, 16, 36, 0.8); padding: 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+          <img src="../assets/svg/bell.svg" alt="Bell" style="width: 48px; height: 48px; margin-bottom: 0.5rem;">
+          <div style="font-family: var(--font-retro); font-size: 0.75rem; color: #ffdd00;">BELL</div>
+          <div style="font-size: 0.8rem; color: var(--text-dim);">Levels 9-10</div>
+          <div class="rank-gold" style="font-size: 0.85rem; margin-top: 0.3rem;">3,000 PTS</div>
+        </div>
+
+        <div style="background: rgba(12, 16, 36, 0.8); padding: 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+          <img src="../assets/svg/key.svg" alt="Key" style="width: 48px; height: 48px; margin-bottom: 0.5rem;">
+          <div style="font-family: var(--font-retro); font-size: 0.75rem; color: #00ffff;">KEY</div>
+          <div style="font-size: 0.8rem; color: var(--text-dim);">Levels 11+</div>
+          <div class="rank-gold" style="font-size: 0.85rem; margin-top: 0.3rem;">5,000 PTS</div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="arcade-footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="../index.html">Play Game</a>
+        <a href="how-to-play.html">How to Play</a>
+        <a href="high-scores.html">High Scores</a>
+        <a href="settings.html">Settings</a>
+      </div>
+      <p>© 2026 PAC-MAN 2D Arcade Web Edition.</p>
+    </div>
+  </footer>
+</body>
+</html>

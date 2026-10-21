@@ -1,0 +1,341 @@
+/**
+ * Pac-Man 2D Arcade - Game Canvas, Overlays, and Mobile D-Pad
+ */
+
+#game-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #06060c;
+  overflow: hidden;
+}
+
+#game-canvas {
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  aspect-ratio: 28 / 31;
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* Banner overlay (Ready, Game Over, Paused) */
+#game-banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(6, 8, 20, 0.88);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+  animation: bannerFadeIn 0.25s ease-out;
+}
+
+@keyframes bannerFadeIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.banner-box {
+  background: linear-gradient(180deg, #181d38 0%, #0c0f20 100%);
+  border: 3px solid var(--neon-blue);
+  box-shadow: 0 0 25px rgba(0, 229, 255, 0.5), inset 0 0 15px rgba(0, 229, 255, 0.2);
+  border-radius: 14px;
+  padding: 2rem 2.5rem;
+  text-align: center;
+  max-width: 440px;
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.banner-title {
+  font-family: var(--font-retro);
+  font-size: 1.6rem;
+  color: var(--pac-yellow);
+  text-shadow: 0 0 12px rgba(255, 255, 0, 0.8);
+  letter-spacing: 2px;
+}
+
+.banner-sub {
+  font-family: var(--font-retro);
+  font-size: 0.75rem;
+  color: var(--neon-blue);
+  line-height: 1.6;
+}
+
+/* Mobile Virtual D-Pad */
+.mobile-controls {
+  margin-top: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.dpad-container {
+  display: grid;
+  grid-template-columns: repeat(3, 56px);
+  grid-template-rows: repeat(3, 56px);
+  gap: 6px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.dpad-btn {
+  background: #141830;
+  border: 2px solid #2d3866;
+  border-radius: 10px;
+  color: var(--neon-blue);
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  transition: all 0.1s ease;
+  touch-action: manipulation;
+}
+
+.dpad-btn:active, .dpad-btn.pressed {
+  background: var(--neon-blue);
+  color: #000;
+  box-shadow: 0 0 15px var(--neon-blue);
+  transform: scale(0.95);
+}
+
+.dpad-up {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.dpad-left {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.dpad-center {
+  grid-column: 2;
+  grid-row: 2;
+  background: #090c1a;
+  border-color: #1a2040;
+  pointer-events: none;
+}
+
+.dpad-right {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.dpad-down {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+/* Cabinet Control Desk (Physical buttons) */
+.cabinet-deck {
+  margin-top: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0a0d1c;
+  border: 2px solid #22294f;
+  border-radius: 12px;
+  padding: 0.8rem 1.2rem;
+}
+
+.deck-group {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.instruction-tag {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.kbd {
+  background: #1b203d;
+  color: #fff;
+  border: 1px solid #3d4a82;
+  border-radius: 4px;
+  padding: 0.15rem 0.45rem;
+  font-size: 0.7rem;
+  font-family: var(--font-retro);
+  box-shadow: 0 2px 0 #0f1326;
+}
+
+/* Content Pages (How to play, characters, scores) */
+.page-container {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.page-title {
+  font-family: var(--font-retro);
+  font-size: 1.8rem;
+  color: var(--pac-yellow);
+  text-shadow: var(--glow-yellow);
+  margin-bottom: 0.8rem;
+}
+
+.page-desc {
+  font-size: 1.1rem;
+  color: var(--text-dim);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.content-card {
+  background: var(--bg-card);
+  border: 2px solid var(--bg-card-border);
+  border-radius: 14px;
+  padding: 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+}
+
+.card-title {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.card-title .icon {
+  width: 28px;
+  height: 28px;
+}
+
+/* Character Showcase Grid */
+.ghost-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.ghost-card {
+  background: rgba(14, 18, 38, 0.9);
+  border-radius: 12px;
+  border: 2px solid transparent;
+  padding: 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.ghost-card:hover {
+  transform: translateY(-5px);
+}
+
+.ghost-card.blinky {
+  border-color: #ff0000;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.25);
+}
+
+.ghost-card.pinky {
+  border-color: #ffb8de;
+  box-shadow: 0 0 15px rgba(255, 184, 222, 0.25);
+}
+
+.ghost-card.inky {
+  border-color: #00ffff;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.25);
+}
+
+.ghost-card.clyde {
+  border-color: #ffb852;
+  box-shadow: 0 0 15px rgba(255, 184, 82, 0.25);
+}
+
+.ghost-avatar {
+  width: 72px;
+  height: 72px;
+}
+
+.ghost-name {
+  font-family: var(--font-retro);
+  font-size: 1.1rem;
+}
+
+.ghost-nick {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+.ghost-role {
+  font-size: 0.88rem;
+  color: var(--text-main);
+  line-height: 1.4;
+}
+
+/* Leaderboard Table */
+.scores-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.scores-table th, .scores-table td {
+  padding: 0.9rem 1.2rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.scores-table th {
+  font-family: var(--font-retro);
+  font-size: 0.75rem;
+  color: var(--neon-blue);
+  background: rgba(0, 229, 255, 0.08);
+}
+
+.scores-table td {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+}
+
+.scores-table tr:hover td {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.rank-gold {
+  color: #ffd700;
+  font-weight: 700;
+}
+.rank-silver {
+  color: #c0c0c0;
+  font-weight: 700;
+}
+.rank-bronze {
+  color: #cd7f32;
+  font-weight: 700;
+}
