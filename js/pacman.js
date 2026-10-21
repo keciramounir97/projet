@@ -10,22 +10,21 @@ export class Pacman {
     this.maze = maze;
     this.startX = 13.5;
     this.startY = 23;
-    this.x = this.startX; // in tile units
-    this.y = this.startY;
+    this.x = 13.5;
+    this.y = 23;
     this.currentDirection = DIRECTIONS.NONE;
     this.nextDirection = DIRECTIONS.NONE;
-    this.baseSpeed = 4.8; // tiles per second
+    this.baseSpeed = 5.0; // tiles per second
     this.speed = this.baseSpeed;
     this.mouthAngle = 0.2;
     this.mouthDir = 1;
     this.isDying = false;
-    this.deathProgress = 0; // 0 to 1
-    this.radius = TILE_SIZE * 0.75;
+    this.deathProgress = 0;
   }
 
   reset() {
-    this.x = this.startX;
-    this.y = this.startY;
+    this.x = 13.5;
+    this.y = 23;
     this.currentDirection = DIRECTIONS.NONE;
     this.nextDirection = DIRECTIONS.NONE;
     this.speed = this.baseSpeed;
@@ -36,7 +35,9 @@ export class Pacman {
   }
 
   setDirection(newDir) {
-    // If reversing current direction, allow immediately
+    if (!newDir || newDir === DIRECTIONS.NONE) return;
+
+    // Instant 180-degree turn
     if (
       (this.currentDirection === DIRECTIONS.LEFT && newDir === DIRECTIONS.RIGHT) ||
       (this.currentDirection === DIRECTIONS.RIGHT && newDir === DIRECTIONS.LEFT) ||
@@ -47,75 +48,115 @@ export class Pacman {
       this.nextDirection = DIRECTIONS.NONE;
       return;
     }
-    this.nextDirection = newDir;
-  }
 
-  canMove(direction) {
-    if (direction === DIRECTIONS.NONE) return false;
-    const nextTileX = Math.floor(this.x + direction.x * 0.55);
-    const nextTileY = Math.floor(this.y + direction.y * 0.55);
-    return this.maze.isPassableForPacman(nextTileX, nextTileY);
+    // If currently stopped, try to start moving in newDir immediately
+    if (this.currentDirection === DIRECTIONS.NONE) {
+      const curTileX = Math.round(this.x);
+      const curTileY = Math.round(this.y);
+      if (this.maze.isPassableForPacman(curTileX + newDir.x, curTileY + newDir.y)) {
+        this.x = curTileX;
+        this.y = curTileY;
+        this.currentDirection = newDir;
+        this.nextDirection = DIRECTIONS.NONE;
+        return;
+      }
+    }
+
+    this.nextDirection = newDir;
   }
 
   update(dt) {
     if (this.isDying) {
-      this.deathProgress += dt / 1200; // ~1.2s death animation
+      this.deathProgress += dt / 1300;
       if (this.deathProgress > 1) this.deathProgress = 1;
       return;
     }
 
-    // Try buffered direction if aligned to tile center
+    const step = (this.speed * dt) / 1000;
+
+    // 1. Try turning to buffered nextDirection when approaching or passing an intersection
     if (this.nextDirection !== DIRECTIONS.NONE && this.nextDirection !== this.currentDirection) {
-      const isAlignedX = Math.abs((this.x % 1) - 0.5) < 0.2 || (this.nextDirection.x !== 0);
-      const isAlignedY = Math.abs((this.y % 1) - 0.5) < 0.2 || (this.nextDirection.y !== 0);
+      const targetTileX = Math.round(this.x);
+      const targetTileY = Math.round(this.y);
 
-      // Check if target tile in nextDirection is passable
-      const checkX = Math.round(this.x) + this.nextDirection.x;
-      const checkY = Math.round(this.y) + this.nextDirection.y;
+      // Check distance to integer tile center
+      const distToCenter = Math.hypot(this.x - targetTileX, this.y - targetTileY);
 
-      if (this.maze.isPassableForPacman(checkX, checkY)) {
-        // Snap to center when turning corner
-        if (this.nextDirection.y !== 0 && this.currentDirection.x !== 0) {
-          this.x = Math.round(this.x);
-        } else if (this.nextDirection.x !== 0 && this.currentDirection.y !== 0) {
-          this.y = Math.round(this.y);
+      if (distToCenter <= step * 1.5 + 0.12) {
+        const canTurn = this.maze.isPassableForPacman(
+          targetTileX + this.nextDirection.x,
+          targetTileY + this.nextDirection.y
+        );
+
+        if (canTurn) {
+          this.x = targetTileX;
+          this.y = targetTileY;
+          this.currentDirection = this.nextDirection;
+          this.nextDirection = DIRECTIONS.NONE;
         }
-        this.currentDirection = this.nextDirection;
-        this.nextDirection = DIRECTIONS.NONE;
       }
     }
 
-    // Move in current direction
+    // 2. Move in currentDirection
     if (this.currentDirection !== DIRECTIONS.NONE) {
-      const step = (this.speed * dt) / 1000;
-      const targetTileX = Math.floor(this.x + this.currentDirection.x * 0.52);
-      const targetTileY = Math.floor(this.y + this.currentDirection.y * 0.52);
+      const nextX = this.x + this.currentDirection.x * step;
+      const nextY = this.y + this.currentDirection.y * step;
 
-      if (this.maze.isPassableForPacman(targetTileX, targetTileY)) {
-        this.x += this.currentDirection.x * step;
-        this.y += this.currentDirection.y * step;
+      // Handle horizontal movement
+      if (this.currentDirection.x !== 0) {
+        this.y = Math.round(this.y); // Lock to row
+        const targetTileX = this.currentDirection.x > 0 ? Math.floor(nextX) + 1 : Math.ceil(nextX) - 1;
 
-        // Tunnel wrapping
-        if (this.x < -0.5) {
-          this.x = MAP_COLS - 0.5;
-        } else if (this.x >= MAP_COLS + 0.5) {
-          this.x = -0.5;
+        // Check tunnel wrap at row 14
+        if (this.y === 14) {
+          this.x = nextX;
+          if (this.x < -0.5) this.x = MAP_COLS - 0.5;
+          else if (this.x > MAP_COLS - 0.5) this.x = -0.5;
+        } else {
+          // Check wall obstacle ahead
+          if (this.maze.isPassableForPacman(targetTileX, this.y)) {
+            this.x = nextX;
+          } else {
+            // Cannot enter target tile: stop right at current tile center
+            const curCenter = Math.round(this.x);
+            if ((this.currentDirection.x > 0 && nextX >= curCenter) ||
+                (this.currentDirection.x < 0 && nextX <= curCenter)) {
+              this.x = curCenter;
+              this.currentDirection = DIRECTIONS.NONE;
+            } else {
+              this.x = nextX;
+            }
+          }
         }
+      }
 
-        // Animate mouth when moving
-        this.mouthAngle += this.mouthDir * (dt / 100);
-        if (this.mouthAngle > 0.32) {
-          this.mouthAngle = 0.32;
-          this.mouthDir = -1;
-        } else if (this.mouthAngle < 0.02) {
-          this.mouthAngle = 0.02;
-          this.mouthDir = 1;
+      // Handle vertical movement
+      if (this.currentDirection.y !== 0) {
+        this.x = Math.round(this.x); // Lock to column
+        const targetTileY = this.currentDirection.y > 0 ? Math.floor(nextY) + 1 : Math.ceil(nextY) - 1;
+
+        if (this.maze.isPassableForPacman(this.x, targetTileY)) {
+          this.y = nextY;
+        } else {
+          const curCenter = Math.round(this.y);
+          if ((this.currentDirection.y > 0 && nextY >= curCenter) ||
+              (this.currentDirection.y < 0 && nextY <= curCenter)) {
+            this.y = curCenter;
+            this.currentDirection = DIRECTIONS.NONE;
+          } else {
+            this.y = nextY;
+          }
         }
-      } else {
-        // Hit wall: snap to grid center
-        this.x = Math.round(this.x);
-        this.y = Math.round(this.y);
-        this.currentDirection = DIRECTIONS.NONE;
+      }
+
+      // 3. Animate mouth when moving
+      this.mouthAngle += this.mouthDir * (dt / 85);
+      if (this.mouthAngle > 0.32) {
+        this.mouthAngle = 0.32;
+        this.mouthDir = -1;
+      } else if (this.mouthAngle < 0.02) {
+        this.mouthAngle = 0.02;
+        this.mouthDir = 1;
       }
     }
   }
@@ -136,7 +177,6 @@ export class Pacman {
     ctx.translate(px, py);
 
     if (this.isDying) {
-      // Pacman death animation: mouth opens all the way
       ctx.fillStyle = '#FFFF00';
       ctx.shadowColor = '#FFD700';
       ctx.shadowBlur = 8;
@@ -149,7 +189,6 @@ export class Pacman {
         ctx.closePath();
         ctx.fill();
       } else {
-        // Disappearing pop sparkle
         const popR = radius * (1 - (this.deathProgress - 0.9) * 10);
         if (popR > 0) {
           ctx.beginPath();
@@ -161,7 +200,6 @@ export class Pacman {
       return;
     }
 
-    // Normal Pac-Man drawing
     let rotation = 0;
     if (this.currentDirection === DIRECTIONS.RIGHT) rotation = 0;
     else if (this.currentDirection === DIRECTIONS.DOWN) rotation = Math.PI / 2;
@@ -170,7 +208,7 @@ export class Pacman {
 
     ctx.rotate(rotation);
 
-    // Glowing arcade Pac-Man body
+    // Glowing neon Pac-Man body
     ctx.fillStyle = '#FFFF00';
     ctx.shadowColor = 'rgba(255, 235, 59, 0.85)';
     ctx.shadowBlur = 10;

@@ -9,8 +9,8 @@ import { TILE_SIZE, MAP_COLS, MAP_ROWS } from './constants.js';
 // 1 = Wall
 // 2 = Pellet (small dot, 10 pts)
 // 3 = Energizer (power pellet, 50 pts)
-// 4 = Ghost House Door
-// 5 = Ghost House Interior
+// 4 = Ghost House Door (passable only for eyes returning or ghosts exiting)
+// 5 = Ghost House Interior (passable only when inside house or returning eyes)
 // 6 = Fruit Spawn Location
 // 7 = Tunnel Wrap Path
 // 0 = Empty walkable space
@@ -57,7 +57,6 @@ export class MazeMap {
     this.energizerFlash = true;
     this.flashTimer = 0;
     this.levelClearFlashing = false;
-    this.levelClearFlashCount = 0;
     this.reset();
   }
 
@@ -77,28 +76,26 @@ export class MazeMap {
 
   isWall(x, y) {
     if (x < 0 || x >= MAP_COLS || y < 0 || y >= MAP_ROWS) return false;
-    const tile = this.grid[y][x];
-    return tile === 1;
-  }
-
-  isGhostDoor(x, y) {
-    if (x < 0 || x >= MAP_COLS || y < 0 || y >= MAP_ROWS) return false;
-    return this.grid[y][x] === 4;
+    return this.grid[y][x] === 1;
   }
 
   isPassableForPacman(x, y) {
-    if (y === 14 && (x < 0 || x >= MAP_COLS)) return true; // tunnel wrap
+    // Tunnel side wrap
+    if (y === 14 && (x < 0 || x >= MAP_COLS)) return true;
     if (x < 0 || x >= MAP_COLS || y < 0 || y >= MAP_ROWS) return false;
     const tile = this.grid[y][x];
+    // Pacman cannot enter walls (1), ghost door (4), or ghost house interior (5)
     return tile !== 1 && tile !== 4 && tile !== 5;
   }
 
   isPassableForGhost(x, y, isEaten = false) {
-    if (y === 14 && (x < 0 || x >= MAP_COLS)) return true; // tunnel wrap
+    // Tunnel side wrap
+    if (y === 14 && (x < 0 || x >= MAP_COLS)) return true;
     if (x < 0 || x >= MAP_COLS || y < 0 || y >= MAP_ROWS) return false;
     const tile = this.grid[y][x];
-    if (tile === 1) return false;
-    if (tile === 4) return true; // ghost door is passable
+    if (tile === 1) return false; // Walls never passable
+    if (tile === 4) return isEaten; // Ghost door ONLY passable when eyes returning home
+    if (tile === 5) return isEaten; // House interior ONLY passable when returning home
     return true;
   }
 
@@ -132,11 +129,10 @@ export class MazeMap {
     const wallColor = isWhite ? '#FFFFFF' : theme.wallColor;
     const glowColor = isWhite ? '#FFFFFF' : theme.wallGlow;
 
-    // Draw dark background
+    // Dark canvas background
     ctx.fillStyle = '#06060c';
     ctx.fillRect(0, 0, MAP_COLS * TILE_SIZE, MAP_ROWS * TILE_SIZE);
 
-    // Draw walls
     for (let r = 0; r < MAP_ROWS; r++) {
       for (let c = 0; c < MAP_COLS; c++) {
         const tile = this.grid[r][c];
@@ -144,16 +140,15 @@ export class MazeMap {
         const py = r * TILE_SIZE;
 
         if (tile === 1) {
-          ctx.fillStyle = '#0b0c1b';
+          ctx.fillStyle = '#0c0e1e';
           ctx.fillRect(px, py, TILE_SIZE, TILE_SIZE);
 
-          // Neon border effect
+          // Neon wall outline
           ctx.strokeStyle = wallColor;
           ctx.lineWidth = 2;
           ctx.shadowColor = glowColor;
           ctx.shadowBlur = 6;
 
-          // Check neighbors to draw connected neon borders
           const top = r > 0 && this.grid[r - 1][c] === 1;
           const bottom = r < MAP_ROWS - 1 && this.grid[r + 1][c] === 1;
           const left = c > 0 && this.grid[r][c - 1] === 1;
@@ -177,29 +172,29 @@ export class MazeMap {
             ctx.lineTo(px + TILE_SIZE - 1, py + TILE_SIZE);
           }
           ctx.stroke();
-          ctx.shadowBlur = 0; // reset shadow for performance
+          ctx.shadowBlur = 0;
         } else if (tile === 4) {
           // Ghost house door
           ctx.strokeStyle = theme.doorColor;
           ctx.lineWidth = 3;
           ctx.shadowColor = theme.doorColor;
-          ctx.shadowBlur = 4;
+          ctx.shadowBlur = 6;
           ctx.beginPath();
           ctx.moveTo(px, py + TILE_SIZE / 2);
           ctx.lineTo(px + TILE_SIZE, py + TILE_SIZE / 2);
           ctx.stroke();
           ctx.shadowBlur = 0;
         } else if (tile === 2) {
-          // Pellet dot
+          // Normal Pellet
           ctx.fillStyle = '#ffb897';
-          ctx.shadowColor = 'rgba(255, 184, 151, 0.8)';
+          ctx.shadowColor = 'rgba(255, 184, 151, 0.7)';
           ctx.shadowBlur = 3;
           ctx.beginPath();
-          ctx.arc(px + TILE_SIZE / 2, py + TILE_SIZE / 2, 2.8, 0, Math.PI * 2);
+          ctx.arc(px + TILE_SIZE / 2, py + TILE_SIZE / 2, 2.5, 0, Math.PI * 2);
           ctx.fill();
           ctx.shadowBlur = 0;
         } else if (tile === 3) {
-          // Energizer power pellet (blinking)
+          // Energizer (Power Pellet)
           if (this.energizerFlash) {
             ctx.fillStyle = '#ffffff';
             ctx.shadowColor = '#ffb897';
